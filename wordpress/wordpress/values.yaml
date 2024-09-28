@@ -1,0 +1,23 @@
+wordpress:
+  image: wordpress:5.7
+  service:
+    type: ClusterIP
+    port: 80
+
+db:
+  host: my-rds-endpoint.amazonaws.com  # Replace with your actual RDS endpoint
+  name: wordpressdb
+  user: wordpressuser
+  password: wordpresspassword
+  rootPassword: mysqlrootpassword
+
+persistence:
+  efs:
+    enabled: true
+    accessPoint: fsap-xxxxxxxx  # Replace with your EFS Access Point ID
+    fileSystemId: fs-xxxxxxxx   # Replace with your EFS File System ID
+
+ingress:
+  enabled: true
+  hosts:
+    - wordpress.example.com
